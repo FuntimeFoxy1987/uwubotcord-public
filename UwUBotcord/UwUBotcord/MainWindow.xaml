@@ -1,0 +1,641 @@
+﻿<Window
+    Name="WindowsP"
+    x:Class="UwUBotcord.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:UwUBotcord="clr-namespace:UwUBotcord"
+    Title="UwUBotcord"
+    Height="540"
+    Width="960"
+    MinHeight="540"
+    MinWidth="960"
+    Icon="logoUwUBotcord.ico"
+    Style="{StaticResource Style}" FontFamily="Montserrat"
+    xmlns:local="clr-namespace:UwUBotcord.styles"
+    xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
+    xmlns:gif="http://wpfanimatedgif.codeplex.com"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    >
+    <Window.Resources>
+        <MatrixTransform x:Key="TransformBackGraund" Matrix="Identity"/>
+        <system:Boolean x:Key="ShowGridLinesBool">
+            False
+        </system:Boolean>
+        <Style TargetType="Image">
+            <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+        </Style>
+        <SolidColorBrush x:Key="Topic" Color="#0a0d15"/>
+    </Window.Resources>
+    <!--<DockPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Image Source=".\1.png" Grid.Row="0"
+        HorizontalAlignment="Center" />
+            -->
+    <!--<Canvas Grid.Row="1" >
+                <Canvas.Background>
+                    <ImageBrush ImageSource=".\1.png"
+                            Stretch="Uniform" Viewbox="0.5,0.45,0.3,0.2" />
+                </Canvas.Background>
+            </Canvas>-->
+    <!--
+        </Grid>
+    </DockPanel>-->
+    <!--<Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="34"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <WindowsFormsHost Grid.Row="1">
+            <WindowsFormsHost.Child>
+                <UwUBotcord:SfmlDrawingSurface x:Name="DrawSurface" SizeChanged="DrawSurface_SizeChanged"/>
+            </WindowsFormsHost.Child>
+        </WindowsFormsHost>
+        -->
+    <!--<Button 
+            Content="Test"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Width="74"
+            Style="{StaticResource StyleTitleBarButton}" Grid.Row="0">
+
+            -->
+    <!--<Grid MaxHeight="9" MaxWidth="9">
+                <Path
+                Stroke="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"
+                StrokeThickness="1"
+                Stretch="None"
+                RenderOptions.EdgeMode="Aliased"
+                Data="M0,8 H8 M0,7 H8 M0,6 H8"
+                />
+            </Grid>-->
+    <!--
+        </Button>-->
+    <!--
+     </Grid>-->
+
+    <DockPanel>
+        <TabControl Name="TabsWindows" Margin="0" Padding="0" SelectionChanged="TabsWindows_SelectionChanged">
+            <TabItem>
+                <DockPanel VerticalAlignment="Stretch">
+                    <Grid Name="GridF" ShowGridLines="{StaticResource ShowGridLinesBool}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="72"/>
+                            <ColumnDefinition Width="240"/>
+                            <ColumnDefinition />
+                            <!--<ColumnDefinition Width="240"/>-->
+                        </Grid.ColumnDefinitions>
+                        <Grid.Background>
+                            <!--<ImageBrush x:Name="BackGraundImage" ImageSource="1.png" Stretch="UniformToFill"/>-->
+                            <VisualBrush>
+                                <VisualBrush.Visual>
+                                    <Image gif:ImageBehavior.AnimatedSource="1.png"/>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Grid.Background>
+                        <Border Grid.Column="0" Background="#330a0b15">
+                            <Grid x:Name="ListIcons">
+                                <!--<Border Background="#FF0a0b15" CornerRadius="47" Height="47" Width="47" VerticalAlignment="Top"  RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform Y="4"/>
+                                        </TransformGroup>
+                                    </Border.RenderTransform>
+                                </Border>-->
+                                <UwUBotcord:ListIconButton 
+                                    x:Name="gg" 
+                                    Image="logoUwUBotcord.ico" 
+                                    BorderBrush="#FF0a0b15" 
+                                    Width="47" 
+                                    Height="47" 
+                                    Radius="47" 
+                                    MinRadius="10"
+                                    MaxRadius="47"
+                                    VerticalAlignment="Top" 
+                                    Click="ListIconButton_Click" 
+                                    RenderTransformOrigin="0.5,0.5" 
+                                    Content="Direct Messages"
+                                    Type="DirectMessages"
+                                    Block="Hidden">
+                                    <UwUBotcord:ListIconButton.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform Y="4"/>
+                                        </TransformGroup>
+                                    </UwUBotcord:ListIconButton.RenderTransform>
+                                </UwUBotcord:ListIconButton>
+                                <Border CornerRadius="1" Height="2" Width="49" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform Y="58"/>
+                                        </TransformGroup>
+                                    </Border.RenderTransform>
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#80808aff" Offset="0" />
+                                            <GradientStop Color="#CD808aff" Offset="0.25" />
+                                            <GradientStop Color="#CD808aff" Offset="0.75" />
+                                            <GradientStop Color="#80808aff" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+
+                                <!--<Button Style="{StaticResource ButtonWithImage}" local:ButtonExtensions.Image="1.png"/>-->
+                                <!--<Button Style="{StaticResource IconUI}" local:ButtonExtensions.ColorClick="#CD808aff" local:ButtonExtensions.Image="1.png" Click="ListIconButton_Click"/>-->
+
+                                <!--<Border Background="#FF0a0b15" CornerRadius="47" Height="47" Width="47" VerticalAlignment="Top"  RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform Y="67"/>
+                                        </TransformGroup>
+                                    </Border.RenderTransform>
+                                </Border>
+                                <Border Background="#FF0a0b15" CornerRadius="47" Height="47" Width="47" VerticalAlignment="Top"  RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform Y="121"/>
+                                        </TransformGroup>
+                                    </Border.RenderTransform>
+                                </Border>
+                                <Border Background="#FF0a0b15" CornerRadius="47" Height="47" Width="47" VerticalAlignment="Top"  RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform Y="175"/>
+                                        </TransformGroup>
+                                    </Border.RenderTransform>
+                                </Border>-->
+                            </Grid>
+                        </Border>
+                        <Grid Grid.Column="1" ShowGridLines="{StaticResource ShowGridLinesBool}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="53"/>
+                            </Grid.RowDefinitions>
+                            <TabControl x:Name="TabsServer" Grid.Row="0">
+                                <TabItem>
+                                    <Grid ShowGridLines="{StaticResource ShowGridLinesBool}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="53"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Border Grid.Row="0" Background="#B30a0b15">
+                                            <emoji:TextBlock Name="Text" TextWrapping="Wrap" Text="Fluffy Forest 🌿" Foreground="#FFFFFF" RenderTransformOrigin="0.5,0.5">
+                                                <TextBlock.RenderTransform>
+                                                    <TransformGroup>
+                                                        <ScaleTransform/>
+                                                        <SkewTransform/>
+                                                        <RotateTransform/>
+                                                        <TranslateTransform X="16" Y="20"/>
+                                                    </TransformGroup>
+                                                </TextBlock.RenderTransform>
+                                            </emoji:TextBlock>
+                                        </Border>
+                                        <Border Grid.Row="1" Background="#660a0b15"/>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem>
+                                    <Grid ShowGridLines="{StaticResource ShowGridLinesBool}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="53"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Border Grid.Row="0" Background="#B30a0b15">
+                                            <Border Margin="10" Background="#B30a0b15" CornerRadius="3">
+                                                <emoji:TextBlock Text="Find or start a conversation" Foreground="#73797f" VerticalAlignment="Center" Padding="8"/>
+                                            </Border>
+                                        </Border>
+                                        <!--List DMs-->
+                                        <Border Grid.Row="1" Background="#660a0b15">
+                                            <ScrollViewer>
+                                                <Grid Margin="8" ShowGridLines="{StaticResource ShowGridLinesBool}">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="44"/>
+                                                        <RowDefinition Height="44"/>
+                                                        <RowDefinition Height="44"/>
+                                                        <RowDefinition />
+                                                    </Grid.RowDefinitions>
+                                                    <Border Grid.Row="0" Height="42" RenderTransformOrigin="0.5,0.5" Background="#660a0b15" CornerRadius="3">
+                                                        <Border.RenderTransform>
+                                                            <TransformGroup>
+                                                                <ScaleTransform/>
+                                                                <SkewTransform/>
+                                                                <RotateTransform/>
+                                                                <TranslateTransform Y="1"/>
+                                                            </TransformGroup>
+                                                        </Border.RenderTransform>
+                                                        <Grid Margin="8,0,0,0" ShowGridLines="{StaticResource ShowGridLinesBool}">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="44"/>
+                                                                <ColumnDefinition Width="148"/>
+                                                                <ColumnDefinition Width="16"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Viewbox Grid.Column="0" Height="24" Width="24">
+                                                                <Path
+                                                                    Fill="#73797f"
+                                                                    StrokeThickness="0"
+                                                                    RenderOptions.EdgeMode="Unspecified"
+                                                                    Data="M0.5,0 L0.5,1.5 C0.5,5.65 2.71,9.28 6,11.3 L6,16 L21,16 L21,14 C21,11.34 15.67,10 13,10 C13,10 12.83,10 12.75,10 C8,10 4,6 4,1.5 L4,0 L0.5,0 Z M13,0 C10.790861,0 9,1.790861 9,4 C9,6.209139 10.790861,8 13,8 C15.209139,8 17,6.209139 17,4 C17,1.790861 15.209139,0 13,0 Z"
+                                                                />
+                                                            </Viewbox>
+                                                            <emoji:TextBlock Grid.Column="1" Text="Friends" VerticalAlignment="Center" Foreground="#73797f"/>
+                                                        </Grid>
+                                                    </Border>
+                                                    <Border Grid.Row="1" Height="42" RenderTransformOrigin="0.5,0.5" Background="#660a0b15" CornerRadius="3">
+                                                        <Border.RenderTransform>
+                                                            <TransformGroup>
+                                                                <ScaleTransform/>
+                                                                <SkewTransform/>
+                                                                <RotateTransform/>
+                                                                <TranslateTransform Y="1"/>
+                                                            </TransformGroup>
+                                                        </Border.RenderTransform>
+                                                        <Grid Margin="8,0,0,0" ShowGridLines="{StaticResource ShowGridLinesBool}">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="44"/>
+                                                                <ColumnDefinition Width="148"/>
+                                                                <ColumnDefinition Width="16"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Viewbox Grid.Column="0" Height="24" Width="24">
+                                                                <Path
+                                                                    Fill="#73797f"
+                                                                    StrokeThickness="0"
+                                                                    RenderOptions.EdgeMode="Unspecified"
+                                                                    Data="M2.98966977,9.35789159 C2.98966977,9.77582472 2.63442946,10.1240466 2.20807287,10.1240466 L1.78171628,10.1240466 C1.35535969,10.1240466 0.999948837,9.77582472 0.999948837,9.35789159 C0.999948837,8.93995846 1.35535969,8.59173658 1.78171628,8.59173658 L2.20807287,8.59173658 C2.63442946,8.59173658 2.98966977,8.93995846 2.98966977,9.35789159 Z M22.2467643,9.14892503 C24.0942527,12.9800344 22.3888264,17.5772989 18.3384388,19.3882867 C14.4302837,21.1297305 9.74036124,19.457998 7.9638186,15.6268886 C7.60857829,14.8607335 7.3954,14.0248673 7.32428372,13.189001 L5.76091938,13.189001 C5.33456279,13.189001 4.97932248,12.840612 4.97932248,12.4226788 C4.97932248,12.0047457 5.33456279,11.6565238 5.76091938,11.6565238 L8.03493488,11.6565238 C8.46129147,11.6565238 8.81653178,11.3083019 8.81653178,10.8903688 C8.81653178,10.4724357 8.46129147,10.1240466 8.03493488,10.1240466 L4.41090388,10.1240466 C3.98454729,10.1240466 3.62913643,9.77582472 3.62913643,9.35789159 C3.62913643,8.93995846 3.98454729,8.59173658 4.41090388,8.59173658 L9.45606667,8.59173658 C9.88242326,8.59173658 10.2376636,8.24334752 10.2376636,7.82541439 C10.2376636,7.40748126 9.88242326,7.05925937 9.45606667,7.05925937 L7.3954,7.05925937 C6.75586512,7.05925937 6.18727597,6.57161499 6.18727597,5.87517123 C6.18727597,5.24827153 6.68474884,4.69091591 7.3954,4.69091591 L15.4250589,4.69091591 C18.267493,4.8303384 20.9676946,6.43235968 22.2467643,9.14892503 Z M13.2662961,8.38056332 C11.0193969,9.3919615 10.0341721,11.9973566 11.065955,14.1998642 C12.097738,16.4023718 14.755645,17.3681317 17.0025442,16.3567335 C19.249614,15.3453354 20.2346682,12.7399402 19.2028853,10.5374326 C18.1711023,8.33492503 15.5131953,7.36916515 13.2662961,8.38056332 Z M16.8462589,9.84548582 L18.2673907,12.2138293 C18.338507,12.3530846 18.338507,12.4227958 18.2673907,12.5620512 L16.8462589,14.9303946 C16.7751426,15.0696499 16.6330806,15.0696499 16.5619643,15.0696499 L13.7906465,15.0696499 C13.6485845,15.0696499 13.5774682,14.9999387 13.5065225,14.9303946 L12.0852202,12.5620512 C12.0142744,12.4227958 12.0142744,12.3530846 12.0852202,12.2138293 L13.5065225,9.84548582 C13.5774682,9.7062305 13.7197008,9.7062305 13.7906465,9.7062305 L16.5619643,9.7062305 C16.7041969,9.63651925 16.7751426,9.7062305 16.8462589,9.84548582 Z"
+                                                                />
+                                                            </Viewbox>
+                                                            <emoji:TextBlock Grid.Column="1" Text="Nitro" VerticalAlignment="Center" Foreground="#73797f"/>
+                                                        </Grid>
+                                                    </Border>
+                                                    <Border Grid.Row="2" Height="42" RenderTransformOrigin="0.5,0.5" Background="#660a0b15" CornerRadius="3">
+                                                        <Border.RenderTransform>
+                                                            <TransformGroup>
+                                                                <ScaleTransform/>
+                                                                <SkewTransform/>
+                                                                <RotateTransform/>
+                                                                <TranslateTransform Y="1"/>
+                                                            </TransformGroup>
+                                                        </Border.RenderTransform>
+                                                        <Grid Margin="8,0,0,0" ShowGridLines="{StaticResource ShowGridLinesBool}">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="44"/>
+                                                                <ColumnDefinition Width="148"/>
+                                                                <ColumnDefinition Width="16"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Viewbox Grid.Column="0" Height="24" Width="24">
+                                                                <Grid>
+                                                                    <Path
+                                                                        Fill="#73797f"
+                                                                        StrokeThickness="0"
+                                                                        RenderOptions.EdgeMode="Unspecified"
+                                                                        Data="M12.0002 10.823L20.9652 5.26C20.6772 5.1 20.3522 5 20.0002 5H4.00016C3.64816 5 3.32216 5.1 3.03516 5.26L12.0002 10.823Z"
+                                                                    />
+                                                                    <Path
+                                                                        Fill="#73797f"
+                                                                        StrokeThickness="0"
+                                                                        RenderOptions.EdgeMode="Unspecified"
+                                                                        Data="M12.527 12.8489C12.366 12.9489 12.183 12.9999 12 12.9999C11.817 12.9999 11.634 12.9489 11.473 12.8499L2.003 6.97292C2.003 6.98192 2 6.99092 2 6.99892V15.9989C2 17.1009 2.897 17.9989 4 17.9989H20C21.103 17.9989 22 17.1009 22 15.9989V6.99892C22 6.98992 21.997 6.98092 21.997 6.97192L12.527 12.8489"
+                                                                    />
+                                                                </Grid>
+                                                            </Viewbox>
+                                                            <emoji:TextBlock Grid.Column="1" Text="Message Requests" VerticalAlignment="Center" Foreground="#73797f"/>
+                                                        </Grid>
+                                                    </Border>
+                                                </Grid>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </Grid>
+                                </TabItem>
+                            </TabControl>
+                            <Border Grid.Row="1" Background="#B30a0b15">
+                                <Grid ShowGridLines="{StaticResource ShowGridLinesBool}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="128"/>
+                                        <ColumnDefinition Width="8"/>
+                                        <ColumnDefinition Width="32"/>
+                                        <ColumnDefinition Width="32"/>
+                                        <ColumnDefinition Width="32"/>
+                                        <ColumnDefinition Width="8"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00808aff" CornerRadius="3" RenderTransformOrigin="0.5,0.5" Width="122" Height="40">
+                                        <Border.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform/>
+                                                <SkewTransform/>
+                                                <RotateTransform/>
+                                                <TranslateTransform X="6" Y="6"/>
+                                            </TransformGroup>
+                                        </Border.RenderTransform>
+                                        <Grid ShowGridLines="{StaticResource ShowGridLinesBool}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="35"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <WrapPanel Grid.Column="0" Name ="container" Height="32" Width="32" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                                                <WrapPanel.RenderTransform>
+                                                    <TransformGroup>
+                                                        <ScaleTransform/>
+                                                        <SkewTransform/>
+                                                        <RotateTransform/>
+                                                        <TranslateTransform Y="4" X="2"/>
+                                                    </TransformGroup>
+                                                </WrapPanel.RenderTransform>
+                                                <Image gif:ImageBehavior.AnimatedSource="https://cdn.discordapp.com/avatars/662138103535763466/d75e589e36060fb4fa404e16033542c3.png?size=1024" RenderOptions.EdgeMode="Aliased" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="UniformToFill">
+                                                    <Image.RenderTransform>
+                                                        <TransformGroup>
+                                                            <ScaleTransform CenterX="50" CenterY="50"/>
+                                                        </TransformGroup>
+                                                    </Image.RenderTransform>
+                                                </Image>
+                                                <WrapPanel.OpacityMask>
+                                                    <VisualBrush>
+                                                        <VisualBrush.Visual>
+                                                            <Border Height="{Binding ElementName=container, Path=ActualHeight}" 
+                                                            Width="{Binding ElementName=container, Path=ActualWidth}"
+                                                            Background="White" CornerRadius="47"/>
+                                                        </VisualBrush.Visual>
+                                                    </VisualBrush>
+                                                </WrapPanel.OpacityMask>
+                                            </WrapPanel>
+                                            <Border Background="#40808aff" Height="16" Width="16" CornerRadius="16" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                                                <Border.RenderTransform>
+                                                    <TransformGroup>
+                                                        <ScaleTransform/>
+                                                        <SkewTransform/>
+                                                        <RotateTransform/>
+                                                        <TranslateTransform X="21" Y="23"/>
+                                                    </TransformGroup>
+                                                </Border.RenderTransform>
+                                                <emoji:TextBlock Text="🌙"/>
+                                            </Border>
+                                            <Grid Grid.Column="1" ShowGridLines="{StaticResource ShowGridLinesBool}">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="0.5*"/>
+                                                    <RowDefinition Height="0.5*"/>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="🐱Torracet Day🐱" VerticalAlignment="Center" Padding="5" Foreground="White" TextTrimming="WordEllipsis" FontSize="12" FontWeight="DemiBold"/>
+                                                <TextBlock/>
+                                            </Grid>
+                                        </Grid>
+                                    </Border>
+                                    <Border Grid.Column="2" VerticalAlignment="Top" Background="#00808aff" CornerRadius="3" RenderTransformOrigin="0.5,0.5" Width="32" Height="32">
+                                        <Border.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform/>
+                                                <SkewTransform/>
+                                                <RotateTransform/>
+                                                <TranslateTransform Y="11"/>
+                                            </TransformGroup>
+                                        </Border.RenderTransform>
+                                        <Viewbox Height="20" Width="20" RenderTransformOrigin="0.5,0.5">
+                                            <Viewbox.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform/>
+                                                    <SkewTransform/>
+                                                    <RotateTransform/>
+                                                    <TranslateTransform X="-2"/>
+                                                </TransformGroup>
+                                            </Viewbox.RenderTransform>
+                                            <Path
+                                                Fill="White"
+                                                StrokeThickness="0"
+                                                RenderOptions.EdgeMode="Unspecified"
+                                                Data="M14.99 11C14.99 12.66 13.66 14 12 14C10.34 14 9 12.66 9 11V5C9 3.34 10.34 2 12 2C13.66 2 15 3.34 15 5L14.99 11ZM12 16.1C14.76 16.1 17.3 14 17.3 11H19C19 14.42 16.28 17.24 13 17.72V22H11V17.72C7.72 17.23 5 14.41 5 11H6.7C6.7 14 9.24 16.1 12 16.1Z"
+                                            />
+                                        </Viewbox>
+                                    </Border>
+                                    <Border Grid.Column="3" VerticalAlignment="Top" Background="#00808aff" CornerRadius="3" RenderTransformOrigin="0.5,0.5" Width="32" Height="32">
+                                        <Border.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform/>
+                                                <SkewTransform/>
+                                                <RotateTransform/>
+                                                <TranslateTransform Y="11"/>
+                                            </TransformGroup>
+                                        </Border.RenderTransform>
+                                        <Viewbox Height="20" Width="20" RenderTransformOrigin="0.5,0.5">
+                                            <Viewbox.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform/>
+                                                    <SkewTransform/>
+                                                    <RotateTransform/>
+                                                    <TranslateTransform X="-0.8"/>
+                                                </TransformGroup>
+                                            </Viewbox.RenderTransform>
+                                            <Path
+                                                Fill="White"
+                                                StrokeThickness="0"
+                                                RenderOptions.EdgeMode="Unspecified"
+                                                Data="M12 2.00305C6.486 2.00305 2 6.48805 2 12.0031V20.0031C2 21.1071 2.895 22.0031 4 22.0031H6C7.104 22.0031 8 21.1071 8 20.0031V17.0031C8 15.8991 7.104 15.0031 6 15.0031H4V12.0031C4 7.59105 7.589 4.00305 12 4.00305C16.411 4.00305 20 7.59105 20 12.0031V15.0031H18C16.896 15.0031 16 15.8991 16 17.0031V20.0031C16 21.1071 16.896 22.0031 18 22.0031H20C21.104 22.0031 22 21.1071 22 20.0031V12.0031C22 6.48805 17.514 2.00305 12 2.00305Z"
+                                            />
+                                        </Viewbox>
+                                    </Border>
+                                    <Border Grid.Column="4" VerticalAlignment="Top" Background="#00808aff" CornerRadius="3" RenderTransformOrigin="0.5,0.5" Width="32" Height="32">
+                                        <Border.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform/>
+                                                <SkewTransform/>
+                                                <RotateTransform/>
+                                                <TranslateTransform Y="11"/>
+                                            </TransformGroup>
+                                        </Border.RenderTransform>
+                                        <Viewbox Height="20" Width="20" RenderTransformOrigin="0.5,0.5">
+                                            <Viewbox.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform/>
+                                                    <SkewTransform/>
+                                                    <RotateTransform/>
+                                                    <TranslateTransform X="-0.8"/>
+                                                </TransformGroup>
+                                            </Viewbox.RenderTransform>
+                                            <Path
+                                                Fill="White"
+                                                StrokeThickness="0"
+                                                RenderOptions.EdgeMode="Unspecified"
+                                                Data="M19.738 10H22V14H19.739C19.498 14.931 19.1 15.798 18.565 16.564L20 18L18 20L16.565 18.564C15.797 19.099 14.932 19.498 14 19.738V22H10V19.738C9.069 19.498 8.203 19.099 7.436 18.564L6 20L4 18L5.436 16.564C4.901 15.799 4.502 14.932 4.262 14H2V10H4.262C4.502 9.068 4.9 8.202 5.436 7.436L4 6L6 4L7.436 5.436C8.202 4.9 9.068 4.502 10 4.262V2H14V4.261C14.932 4.502 15.797 4.9 16.565 5.435L18 3.999L20 5.999L18.564 7.436C19.099 8.202 19.498 9.069 19.738 10ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
+                                            />
+                                        </Viewbox>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        <TabControl x:Name="TabsServerChannels" Grid.Column="2">
+                            <TabItem>
+                                <Grid ShowGridLines="{StaticResource ShowGridLinesBool}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="53"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.Row="0" Background="#D00a0b15">
+                                        <TextBlock Text="⟨темис⟩" Foreground="White" VerticalAlignment="Center" Padding="10" FontWeight="DemiBold" FontSize="15"/>
+                                    </Border>
+                                    <Grid Grid.Row="1" ShowGridLines="{StaticResource ShowGridLinesBool}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="240"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border x:Name="MessagesPlace" Grid.Column="0" Background="#A60a0b15">
+                                            <ScrollViewer VerticalScrollBarVisibility="Visible">
+                                                <ItemsControl x:Name="Messages" HorizontalAlignment="Left" VerticalAlignment="Bottom" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <UwUBotcord:Message Content="{Binding content}"
+                                                        AuthorNameColor="White"
+                                                        AuthorName="{Binding author_name}"
+                                                        AuthorAvatarUrl="{Binding author_avatar_url}"
+                                                        Embeds="{Binding embeds}"
+                                                        Width="auto"/>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                    <!--<ItemsControl.Template>
+                                                    <ControlTemplate>
+                                                        <ScrollViewer>
+                                                            <ItemsPresenter/>
+                                                        </ScrollViewer>
+                                                    </ControlTemplate>
+                                                </ItemsControl.Template>-->
+                                                </ItemsControl>
+                                            </ScrollViewer>
+                                        </Border>
+                                        <Border Grid.Column="1">
+                                            <Border.Background>
+                                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                                    <GradientStop Color="#D00a0b15" Offset="0" />
+                                                    <GradientStop Color="#400a0b15" Offset="1" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                    </Grid>
+                                </Grid>
+                            </TabItem>
+                        </TabControl>
+
+                        <!--<Grid Grid.Column="3" ShowGridLines="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="53"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                        </Grid>-->
+
+                        <!--<Rectangle Fill="#660a0b15" Height="{Binding ElementName=WindowsP, Path=Height}" VerticalAlignment="Top" Width="200" HorizontalAlignment="Left">
+                            <Rectangle.RenderTransform>
+                                <TranslateTransform X="72"/>
+                            </Rectangle.RenderTransform>
+                        </Rectangle>-->
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+            <TabItem>
+                <DockPanel VerticalAlignment="Stretch">
+                    <!--<Grid>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="./1.png" Stretch="UniformToFill"/>
+                        </Grid.Background>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="256"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Click="ListIconButton_Click" Height="10" Width="10" VerticalAlignment="Bottom"/>
+                        
+                    <emoji:TextBox  Grid.Column="0" Text="TextBox" FontWeight="Bold" Background="#7F009C9C" Foreground="#FF7F9EFF" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" TextWrapping="Wrap" MaxLength="1024" SpellCheck.IsEnabled="False"/>
+                    
+                        <emoji:TextBlock x:Name="Test" Text="&#127807;Информация" Grid.Column="0" Foreground="#FF9D89FF"/>
+                    </Grid>-->
+                    <Grid RenderTransformOrigin="0.5,0.5">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="./1.png" Stretch="UniformToFill"/>
+                        </Grid.Background>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <!--<UwUBotcord:Message  Grid.Row="0" Width="566" HorizontalAlignment="Left" 
+                                            Content="Свет поражает тьму, а тьма свет... Гармония сил, но должно ли быть то, что свяжет эти вещи воедино? Это мы сейчас узнаём..."
+                                            AuthorAvatarUrl="https://cdn.discordapp.com/avatars/662138103535763466/d75e589e36060fb4fa404e16033542c3.png?size=1024"
+                                            AuthorName="Пушистик"
+                                            AuthorNameColor="#2a8c7a">
+                        </UwUBotcord:Message>-->
+
+                        <!--<UwUBotcord:Message Grid.Row="1" Width="auto" HorizontalAlignment="Left"/>-->
+                        <!--<Image Source="https://cdn.discordapp.com/avatars/662138103535763466/d75e589e36060fb4fa404e16033542c3.png?size=1024" Width="100" Height="100">
+                            <Image.OpacityMask>
+                                <VisualBrush>
+                                    <VisualBrush.Visual>
+                                        <Path Fill="White">
+                                            <Path.Data>
+                                                <CombinedGeometry GeometryCombineMode="Exclude">
+                                                    <CombinedGeometry.Geometry1>
+                                                        <EllipseGeometry RadiusX="50" RadiusY="50" Center="50,50"/>
+                                                    </CombinedGeometry.Geometry1>
+                                                    <CombinedGeometry.Geometry2>
+                                                        <EllipseGeometry RadiusX="20" RadiusY="20" Center="80,80"/>
+                                                    </CombinedGeometry.Geometry2>
+                                                </CombinedGeometry>
+                                            </Path.Data>
+                                        </Path>
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Image.OpacityMask>
+                        </Image>-->
+                        <emoji:TextBlock Text="🌙" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" FontSize="20">
+                            <emoji:TextBlock.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform X="28" Y="64"/>
+                                </TransformGroup>
+                            </emoji:TextBlock.RenderTransform>
+                        </emoji:TextBlock>
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+    <!--<WindowsFormsHost>
+        <WindowsFormsHost.Child>
+            <UwUBotcord:SfmlDrawingSurface x:Name="DrawSurface" SizeChanged="DrawSurface_SizeChanged"/>
+        </WindowsFormsHost.Child>
+    </WindowsFormsHost>-->
+
+    <!--<DockPanel>
+        <StatusBar
+            DockPanel.Dock="Bottom"
+            Height="24">
+            <TextBlock Margin="3,0,0,0">Ready</TextBlock>
+            <StatusBarItem HorizontalAlignment="Right">
+                <ResizeGrip Opacity="0.75" />
+            </StatusBarItem>
+        </StatusBar>
+        <Grid ShowGridLines="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height = "auto" />
+            </Grid.RowDefinitions>
+
+            <WindowsFormsHost Grid.Row="0">
+                <WindowsFormsHost.Child>
+                    <UwUBotcord:SfmlDrawingSurface x:Name="DrawSurface" SizeChanged="DrawSurface_SizeChanged"/>
+                </WindowsFormsHost.Child>
+            </WindowsFormsHost>
+        </Grid>
+    </DockPanel>-->
+</Window>

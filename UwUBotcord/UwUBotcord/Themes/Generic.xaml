@@ -1,0 +1,274 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:UwUBotcord"
+    xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
+    xmlns:gif="http://wpfanimatedgif.codeplex.com"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <local:DoubleToEnabledConverter x:Key="DoubleToEnabledConverter"/>
+
+    <system:Boolean x:Key="ShowGridLinesBool">
+        False
+    </system:Boolean>
+
+    <Style x:Key="CToolTip" TargetType="ToolTip">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <StackPanel>
+                        <Border x:Name="BorderToolTip" Background="#B30a0b15" CornerRadius="5" Height="{TemplateBinding Height}" RenderTransformOrigin="0,0.5">
+                            <emoji:TextBlock 
+                                Text="{TemplateBinding Content}" 
+                                FontSize="{TemplateBinding FontSize}" 
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Padding="5" 
+                                FontWeight="DemiBold"
+                                TextTrimming="WordEllipsis"
+                                MaxWidth="175"/>
+                        </Border>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="{x:Type local:ListIconButton}">
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ListIconButton}">
+                    <Border CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Radius}">
+                        <Border.Background>
+                            <ImageBrush ImageSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Image}" Stretch="UniformToFill"/>
+                        </Border.Background>
+                        <Border.ToolTip>
+                            <ToolTip 
+                                Style="{StaticResource CToolTip}" 
+                                Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}"
+                                Placement="Left" 
+                                VerticalOffset="6"
+                                Foreground="#e0e1e5" 
+                                HorizontalOffset="20"
+                                Height="35"
+                                FontSize="16" RenderTransformOrigin="0,0.5"/>
+                        </Border.ToolTip>
+                        <Grid>
+                            <Border Background="#FF0a0b15" Height="16" Width="16" CornerRadius="16" RenderTransformOrigin="0.5,0.5"  Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Block}">
+                                <Border.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform X="20" Y="12"/>
+                                    </TransformGroup>
+                                </Border.RenderTransform>
+                            </Border>
+                            <Viewbox Height="30" Width="30" RenderTransformOrigin="0.5,0.5" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Block}">
+                                <Viewbox.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform X="10" Y="10"/>
+                                    </TransformGroup>
+                                </Viewbox.RenderTransform>
+                                <Path
+                                    Fill="White"
+                                    StrokeThickness="0"
+                                    RenderOptions.EdgeMode="Unspecified"
+                                    Data="M21.025 5V4C21.025 2.88 20.05 2 19 2C17.95 2 17 2.88 17 4V5C16.4477 5 16 5.44772 16 6V9C16 9.55228 16.4477 10 17 10H19H21C21.5523 10 22 9.55228 22 9V5.975C22 5.43652 21.5635 5 21.025 5ZM20 5H18V4C18 3.42857 18.4667 3 19 3C19.5333 3 20 3.42857 20 4V5Z"
+                                />
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--<EventSetter Event="Loaded" Handler="WindowLoaded" />-->
+    </Style>
+
+    <Style TargetType="{x:Type local:Embed}">
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Embed}">
+                    <Border Name="container" BorderThickness="4,0,0,0" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <Border.OpacityMask>
+                            <VisualBrush>
+                                <VisualBrush.Visual>
+                                    <Border Height="{Binding ElementName=container, Path=ActualHeight}" Width="{Binding ElementName=container, Path=ActualWidth}" Background="White" CornerRadius="3"/>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Border.OpacityMask>
+                        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,8,16,16" ShowGridLines="{StaticResource ShowGridLinesBool}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="96"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" ShowGridLines="{StaticResource ShowGridLinesBool}">
+                                <Grid.RowDefinitions>
+                                    <!--Size Author-->
+                                    <RowDefinition Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SizeAuthor}"/>
+                                    <!--Size Title-->
+                                    <RowDefinition Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SizeTitle}"/>
+                                    <!--Size Descriptiom-->
+                                    <RowDefinition Height="auto"/>
+                                    <!--old<RowDefinition Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SizeDescription}"/>-->
+                                    <RowDefinition Height="auto"/>
+                                    <!--image-->
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="28"/>
+                                </Grid.RowDefinitions>
+                                <Grid Name="author" Grid.Row="0" Margin="0,8,0,0" ShowGridLines="{StaticResource ShowGridLinesBool}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SizeAuthorIcon}"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" gif:ImageBehavior.AnimatedSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AuthorIconUrl}" Height="24" Width="24" HorizontalAlignment="Left">
+                                        <Image.OpacityMask>
+                                            <VisualBrush>
+                                                <VisualBrush.Visual>
+                                                    <Border Height="24" Width="24" CornerRadius="12" Background="White"/>
+                                                </VisualBrush.Visual>
+                                            </VisualBrush>
+                                        </Image.OpacityMask>
+                                    </Image>
+                                    <emoji:TextBlock Grid.Column="1" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AuthorName}" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="DemiBold"/>
+                                </Grid>
+                                <emoji:TextBlock Grid.Row="1" Name="title" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title}" Foreground="White" Margin="0,8,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <emoji:TextBlock Grid.Row="2" Name="discription" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Description}" Foreground="#e0dee0" Margin="0,4,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                <Grid Grid.Row="3" ShowGridLines="{StaticResource ShowGridLinesBool}">
+                                    <!--...-->
+                                </Grid>
+                                <Image Grid.Row="4" Name="image" gif:ImageBehavior.AnimatedSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ImageUrl}" Margin="0,16,0,1" HorizontalAlignment="Left" VerticalAlignment="Top" MaxWidth="400">
+                                    <Image.OpacityMask>
+                                        <VisualBrush>
+                                            <VisualBrush.Visual>
+                                                <Border Height="{Binding ElementName=image, Path=ActualHeight}" Width="{Binding ElementName=image, Path=ActualWidth}" CornerRadius="3" Background="White"/>
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Image.OpacityMask>
+                                </Image>
+                                <Grid Grid.Row="5" Margin="0,8,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="28"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                            </Grid>
+                            <Image Grid.Column="1" Name="thumbnail" Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ThumbnailUrl}" Height="80" Width="80" Margin="16,8,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Image.OpacityMask>
+                                    <VisualBrush>
+                                        <VisualBrush.Visual>
+                                            <Border Height="80" Width="80" CornerRadius="3" Background="White"/>
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Image.OpacityMask>
+                            </Image>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="{x:Type local:Message}">
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Message}">
+                    <Border x:Name="BorderMessage" CornerRadius="5" MinHeight="48">
+                        <Border.Height>
+                            <MultiBinding Converter="{StaticResource DoubleToEnabledConverter}">
+                                <Binding ElementName="text" Path="ActualHeight"/>
+                                <Binding ElementName="autnorBar" Path="ActualHeight"/>
+                                <Binding ElementName="embeds" Path="ActualHeight"/>
+                            </MultiBinding>
+                        </Border.Height>
+                        <Grid ShowGridLines="{StaticResource ShowGridLinesBool}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="72"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="48"/>
+                            </Grid.ColumnDefinitions>
+                            <WrapPanel Grid.Column="0" Name ="container" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                                <WrapPanel.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform Y="4" X="16"/>
+                                    </TransformGroup>
+                                </WrapPanel.RenderTransform>
+                                <Image gif:ImageBehavior.AnimatedSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AuthorAvatarUrl}" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="UniformToFill"/>
+                                <WrapPanel.OpacityMask>
+                                    <VisualBrush>
+                                        <VisualBrush.Visual>
+                                            <Border Height="{Binding ElementName=container, Path=ActualHeight}"
+                                                    Width="{Binding ElementName=container, Path=ActualWidth}"
+                                                    Background="White" CornerRadius="47"/>
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </WrapPanel.OpacityMask>
+                            </WrapPanel>
+                            <Grid Grid.Column="1" ShowGridLines="{StaticResource ShowGridLinesBool}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="24"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid x:Name="autnorBar" Grid.Row="0" ShowGridLines="{StaticResource ShowGridLinesBool}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <emoji:TextBlock Grid.Column="0" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AuthorName}" Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AuthorNameColor}" VerticalAlignment="Center"/>
+                                    <emoji:TextBlock Grid.Column="1" Text="lest seen recently" Foreground="#989aa2" Padding="8" VerticalAlignment="Center"/>
+                                </Grid>
+                                <emoji:TextBlock x:Name="text" Grid.Row="1" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}" Foreground="#e0e1e5" TextWrapping="Wrap"/>
+                                <ItemsControl x:Name="embeds" Grid.Row="2" ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Embeds}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <local:Embed x:Name="embeds" Grid.Row="2" 
+                                             AuthorIconUrl="{Binding author_icon_url}" 
+                                             AuthorName="{Binding author_name}" 
+                                             Description="{Binding description}" 
+                                             Title="{Binding title}"
+                                             ImageUrl="{Binding image_url}"
+                                             FooterIсonUrl="{Binding footer_icon_url}"
+                                             FooterText="{Binding footer_text}"
+                                             ThumbnailUrl="{Binding thumbnail}"
+                                             Background="#C82f3136"
+                                             BorderBrush="{Binding color}"
+                                             MaxWidth="520"
+                                             HorizontalAlignment="Left"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <!--<local:Embed x:Name="embeds" Grid.Row="2" 
+                                             Author_icon_url="https://cdn.discordapp.com/avatars/609654736731242516/a_b2ce39955e0e720d780fa98f4907d919.gif" 
+                                             Author_name="· 🌿 FloofyTemisFoxy [2,82ft] 🌿 ·" 
+                                             Description="Descripetion text" 
+                                             Image_url="1.png"
+                                             Footer_icon_url="https://cdn.discordapp.com/avatars/609654736731242516/a_b2ce39955e0e720d780fa98f4907d919.gif"
+                                             Footer_text="Footer text"
+                                             Thumbnail_url="https://i.imgur.com/AfFp7pu.png"
+                                             Background="#C82f3136"
+                                             BorderBrush="BlueViolet">
+                                </local:Embed>-->
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="BorderMessage" Property="Background" Value="#B30a0b15"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
